@@ -15,7 +15,7 @@ VERIFY_TOKEN = '9582648830'
 
 
 def post_facebook_message(fbid, recevied_message):
-    reply_text = recevied_message + ':)'
+    reply_text = 'i am a bot not trianed enough to talk ryt nw' + ':)'
 
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s" % fbid
