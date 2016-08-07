@@ -52,7 +52,9 @@ def return_random_quote():
     return quotes_arr[0]
 
 def post_facebook_message(fbid, recevied_message):
-    reply_text = recevied_message + ':-)' + return_random_quote()
+
+    #reply_text = recevied_message + ':-)' + return_random_quote()
+    reply_text = return_random_quote()
 
     try:
         user_details_url = "https://graph.facebook.com/v2.6/%s" % fbid
