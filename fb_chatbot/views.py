@@ -1,3 +1,6 @@
+import json, requests, random, re
+from pprint import pprint
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -65,4 +68,4 @@ def index(request):
 
 
 def test():
-    post_facebook_message('abhishek.sukumar.1', 'test message')
+    post_facebook_message('sachin.gupta.18400', 'bot working')
