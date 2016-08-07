@@ -67,7 +67,7 @@ def post_facebook_message(fbid, recevied_message):
 
     random_quote = return_random_quote()
     #joke_text = random_quote[0]
-    joke_text='fuck off sahil'
+    joke_text='i dont care! PAHADI KULFI'
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s' % PAGE_ACCESS_TOKEN
     response_msg = json.dumps({"recipient": {"id": fbid}, "message": {"text": joke_text}})
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
