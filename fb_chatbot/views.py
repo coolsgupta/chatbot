@@ -16,6 +16,15 @@ from django.utils.decorators import method_decorator
 PAGE_ACCESS_TOKEN ='EAALmSKOyvQQBAJDMaeRoLz8An75ZC9LhMrMqO8t7nzkf97H1YzdnVrvFwSvPSZBdUch1RIVb51nM5P2q8GvNPYZCQATam8V4qIuAZBolhN0pHczH4143zFBts546O8ZBj05exL3j58lvHlTcSom2SL7vnyJi7vKgUALZBgHCluxgZDZD'
 VERIFY_TOKEN = '9582648830'
 
+message_object = {
+    "attachment":{
+        "type":"image",
+        "payload":{
+            "url":"http://worldversus.com/img/ironman.jpg"
+        }
+    }
+}
+
 quotes_arr = [["Life isn’t about getting and having, it’s about giving and being.", "Kevin Kruse"],
 ["Whatever the mind of man can conceive and believe, it can achieve.", "Napoleon Hill"],
 ["Strive not to be a success, but rather to be of value.", "Albert Einstein"],
@@ -45,7 +54,17 @@ quotes_arr = [["Life isn’t about getting and having, it’s about giving and b
 ["Either you run the day, or the day runs you.", "Jim Rohn"],
 ["Whether you think you can or you think you can’t, you’re right.", "Henry Ford"],
 ["The two most important days in your life are the day you are born and the day you find out why.", "Mark Twain"],
-["Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.", "Johann Wolfgang von Goethe"]]
+["Whatever you can do, or dream you can, begin it.  Boldness has genius, power and magic in it.", "Johann Wolfgang von Goethe"]
+              ]
+
+def quote_search(str_var):
+    str_var.lower()
+    random.shuffle(quotes_arr)
+    for quote_text,quote_author in quotes_arr:
+        if str_var in quote_author.lower():
+            return quote_text
+
+    return return_random_quote()
 
 def return_random_quote():
     random.shuffle(quotes_arr)
@@ -66,8 +85,10 @@ def post_facebook_message(fbid, recevied_message):
         joke_text = 'Yo ' + reply_text
 
     random_quote = return_random_quote()
-    #joke_text = random_quote[0]
-    joke_text='i dont care! PAHADI KULFI'
+    joke_text = random_quote[0]
+    joke_text = quote_search(recevied_message)
+    #if(fbid=='1432443370103074'):
+    #    joke_text='i dont care! PAHADI KULFI'
     post_message_url = 'https://graph.facebook.com/v2.6/me/messages?access_token=%s' % PAGE_ACCESS_TOKEN
     response_msg = json.dumps({"recipient": {"id": fbid}, "message": {"text": joke_text}})
     status = requests.post(post_message_url, headers={"Content-Type": "application/json"}, data=response_msg)
