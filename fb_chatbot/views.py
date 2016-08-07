@@ -132,7 +132,7 @@ def quote_search(str_var):
     for quote_text,quote_author in quotes_arr:
         if str_var in quote_author.lower():
             return quote_text
-    return return_random_quote()
+    return return_random_quote()[0]
 
 def return_random_quote():
     random.shuffle(quotes_arr)
